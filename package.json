@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "file-writer": "^1.0.2",
+    "react-router": "^6.8.2",
+    "react-router-dom": "^6.8.2",
+    "redux-devtools-extension": "^2.13.9",
+    "redux-thunk": "^2.4.2"
+  }
+}

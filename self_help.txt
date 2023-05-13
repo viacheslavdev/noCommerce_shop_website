@@ -1,0 +1,59 @@
+axios - используем для отправки запроса на сервер django и получения ответа на наш запрос в виде данных.
+В package.json добавляем "proxy": "http://127.0.0.1:8000",  и больше не нужно подавать запрос с полным url 
+axios.get('/api/products/')
+django-cors-headers - используем для получения доступа к серверу django. Временно устанавливаем в settings CORS_ALLOW_ALL_ORIGINS = True
+это позволяет принимать запросы от всех (в том числе от сервера фронта) и отправлять в ответ данные.
+MIDDLEWARE = ['corsheaders.middleware.CorsMiddleware', - для работы с cors нужно добавить в MIDDLEWARE
+rest framework - позволяет работать с api для запросов которые приходят к нему вне сервера
+1. @api_view - декоратор для функции в views принимает в себя как аргумент тип запроса
+2. from rest_framework.response import Response  - дает понять функции что именно нужно возвращать в ответ на request
+
+from rest_framework import serializers - так как js должен получать данные в виде json, необходимо эти данные преобразовать.
+При передачи в View в наш serializer аргументов, можно установить значение many=True - это дает возможность получить данные с многих query set`ов и наоборот со значением False
+
+REDUX---------
+
+export NODE_OPTIONS=--openssl-legacy-provider - чтобы работал проект без ошибок
+
+logger from redux-logger - логирует в консоль все изменения state
+
+applyMiddleware - принимает в себя функции как аргументы (принимает по типу logger, thunk). Это способ расширения возможностей. Нужно добавить applyMiddleware в createStore. Под капотом перехватывает каждое действие  dispatch и дает возможность функциям в applyMiddleware (по типу logger, thunk) выполнять свой функционал.
+
+combineReducers from redux - позволяет объединить 2 и больше reducer`ов в один.
+
+compose - позволяет применить несколько расширителей(applyMiddleware и т.д. стора последовательно 
+compose from redux
+createStore(rootReducer, ... , compose(... , ... ))
+
+window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__() подключение приложения redux в браузере, добавляется к compose или createStore.
+
+
+import {devToolsEnhancer} from 'redux-devtools-extension' - подключение 'trace' в redux devtools
+В создание store добавляем devToolsEnhancer({trace:true}) 
+
+
+import { configureStore } from '@reduxjs/toolkit' - импортируется функция configureStore которая принимает в себя параметр {reducer} происходит создание стора.
+
+import { createAction, createReducer } from "@reduxjs/toolkit"
+createAction - создает событие. При создании принимает в себя 'type' и при передачи через dispatch принимает в себя payload - аргумент для reducer ((store.dispatch(actions.bugAdded({description:'Bug 1'}))
+createReducer
+
+
+import { createSlice } from "@reduxjs/toolkit" - функция для создания reducer и actions. Первым параметром принимает в себя name in actions types, вторым - initial state (может быть []), третьим - reducers: {
+        bugAdded: (state, action) => 
+Где bugAdded - это action.type и внутри стрелочной функции описываем логику обработки события.
+
+axios - библиотека для отправки запросов на сервер, метод request отправляет запрос на сервер. Первым параметром принимает baseUrl - строка с адресом куда отправлять запрос.
+
+Moment - библиотека расчета времени. 
+
+import { Provider } from 'react-redux'; - Компонент Provider використовує сховище Redux як проп і обертає кореневий компонент програми, роблячи його доступним для всіх дочірніх компонентів через функцію connect.
+
+Ви можете викликати useSelector()кілька разів у межах одного функціонального компонента. Кожен виклик useSelector()створює окрему підписку на магазин Redux.
+
+
+Test
+
+Для установки пакетов для тестирования вводим команду в терминал
+npm i jest @types/jest @babel/core @babel/preset-env babel-jest -D
+В корне проекта в файле package.json для scripts добавляем "test": "jest --watchAll" Эта строка добавляет скрипт в терминал для запуска Watch Mode. Теперь мы можем запустить тест с помощью команды npm test вместо npx jest --watchAll
