@@ -1,3 +1,5 @@
+/* Data base before Django REST */
+
 const products = [
     {
       '_id': '1',

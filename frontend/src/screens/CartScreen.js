@@ -5,14 +5,13 @@ import { Row, Col, ListGroup, Image, Form, Button, Card } from 'react-bootstrap'
 import Message from '../components/Message'
 import { addToCard, removeFromCart } from '../actions/cartActions'
 import { useParams, useLocation } from 'react-router-dom'
-import Loader from '../components/Loader'
 
 
 function CartScreen({}) {
 
     const match = Number(useParams().id)
 
-    const location = useLocation().search // explain
+    const location = useLocation().search
 
     const cart = useSelector(state => state.cart)
 
@@ -25,7 +24,9 @@ function CartScreen({}) {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(addToCard(match, qty))
+        if (!isNaN(match)) {
+            dispatch(addToCard(match, qty))
+        }
     }, [dispatch, match, qty])
 
     const removeFromCartHandler = (id) => {
@@ -35,7 +36,6 @@ function CartScreen({}) {
     const checkoutHandler = () => {
         navigate('/shipping')
     }
-
 
     return (
     <Row>
