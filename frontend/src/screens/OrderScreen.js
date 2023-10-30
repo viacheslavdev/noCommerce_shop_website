@@ -32,7 +32,7 @@ function OrderScreen() {
     const addPayPalScript = () => {
         const script = document.createElement('script')
         script.type = 'text/javascript'
-        script.src = 'https://www.paypal.com/sdk/js?client-id=AYY9JvbIX-D91KyDDHlW8qgWFyQB7domXrQOcODqRERHiQCXgh_wzgb_CJG32qLuSskFyamZl6vNxiZV&currency=USD'
+        script.src = ''
         script.async = true
         script.onload = () => {
             setSdkReady(true)
