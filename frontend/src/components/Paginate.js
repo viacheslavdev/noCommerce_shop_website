@@ -3,12 +3,8 @@ import {Pagination} from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 
 function Paginate({pages, page, keyword='', isAdmin =false }) {
-
-    let newKeyword = keyword
     
-    if(keyword){
-        newKeyword = keyword.split('?keyword=')[1].split('&')[0]
-    }
+    const newKeyword = keyword ? keyword.split('?keyword=')[1].split('&')[0] : '';
     
     return ( pages > 1 && (
         <Pagination>
